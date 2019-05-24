@@ -22,11 +22,12 @@ class RouletteGun extends React.Component {
         }, 3000);
       }
     
-      componentWillUnmount() {
+    componentWillUnmount() {
         clearInterval(this.interval)
       }
 
-      generateRandomRouletteNumber() {
+    generateRandomRouletteNumber() {
+        console.log('called');
         return Math.floor(Math.random() * (1 + 8 - 1)) + 1
       }
       
@@ -48,8 +49,16 @@ class RouletteGun extends React.Component {
     }
 }
 
+function generateRandomRouletteNumber() {
+    console.log('called');
+    return Math.floor(Math.random() * (1 + 8 - 1)) + 1
+  }
+
 RouletteGun.defaultProps = ({
-    userNumber: 5
+    userNumber: (() => {
+        const random = generateRandomRouletteNumber();
+        return random;
+    })()
   })
 
 
